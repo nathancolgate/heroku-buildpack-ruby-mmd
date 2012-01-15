@@ -3,7 +3,7 @@ require "language_pack"
 
 # Multimarkdown Language Pack
 ## class Multimarkdown < Formula
-class LanguagePack::Multimarkdown < LanguagePack::Base
+class LanguagePack::Multimarkdown < LanguagePack::Rails3
   
   ## homepage 'http://fletcherpenney.net/multimarkdown/'
   ## url 'https://github.com/fletcher/peg-multimarkdown/tarball/3.2'
@@ -16,6 +16,8 @@ class LanguagePack::Multimarkdown < LanguagePack::Base
     true
   end
 
+  # name of the Language Pack
+  # @return [String] the result
   def name
     "Multimarkdown"
   end
