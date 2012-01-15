@@ -11,10 +11,6 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
   ## head 'https://github.com/fletcher/peg-multimarkdown.git', :branch => 'development'
   # URL           = "https://github.com/fletcher/peg-multimarkdown/tarball/3.2"
   GIT_REPO      = "git://github.com/fletcher/peg-multimarkdown.git"
-  
-  def self.use?
-    true
-  end
 
   # name of the Language Pack
   # @return [String] the result
@@ -31,6 +27,7 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
   ## end
 
   def compile
+    super
     ENV["CFLAGS"] = '-include GLibFacade.h'
     # Downloads from web and unzips the file
     # -L = Follows redirects
@@ -47,7 +44,6 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
       run("make")
     end
     error 'Uh oh 2' unless $?.success?
-
   end
 
 
