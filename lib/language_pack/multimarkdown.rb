@@ -33,12 +33,14 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
     # -L = Follows redirects
     # -s = Silent
     # -o - | tar zxf - = Take the downloaded data, and unzip it
+    topic "Git clone peg-multimarkdown"
     Dir.chdir(build_path) do
       # run("curl #{URL} -L -s -o - | tar zxf -")
       run("git clone #{GIT_REPO}")
     end
     error 'Uh oh 1' unless $?.success?
     
+    topic "Make peg-multimarkdown"
     Dir.chdir("#{build_path}/peg-multimarkdown") do
       # run("curl #{URL} -L -s -o - | tar zxf -")
       run("make")
