@@ -36,14 +36,14 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
     topic "Git clone peg-multimarkdown"
     Dir.chdir(build_path) do
       # run("curl #{URL} -L -s -o - | tar zxf -")
-      run("git clone #{GIT_REPO}")
+      pipe("git clone #{GIT_REPO}")
     end
     error 'Uh oh 1' unless $?.success?
     
     topic "Make peg-multimarkdown"
     Dir.chdir("#{build_path}/peg-multimarkdown") do
       # run("curl #{URL} -L -s -o - | tar zxf -")
-      run("make")
+      pipe("make")
     end
     error 'Uh oh 2' unless $?.success?
   end
