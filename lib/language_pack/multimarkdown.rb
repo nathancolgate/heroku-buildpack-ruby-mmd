@@ -46,6 +46,13 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
       pipe("make")
     end
     error 'Uh oh 2' unless $?.success?
+    
+    topic "Make install peg-multimarkdown"
+    Dir.chdir("#{build_path}/peg-multimarkdown") do
+      # run("curl #{URL} -L -s -o - | tar zxf -")
+      pipe("make install")
+    end
+    error 'Uh oh 3' unless $?.success?
   end
 
 
