@@ -29,13 +29,14 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
   def compile
     super
     ENV["CFLAGS"] = '-include GLibFacade.h'
+    
+    # run("curl #{URL} -L -s -o - | tar zxf -")
     # Downloads from web and unzips the file
     # -L = Follows redirects
     # -s = Silent
     # -o - | tar zxf - = Take the downloaded data, and unzip it
     topic "Git clone peg-multimarkdown"
     Dir.chdir(build_path) do
-      # run("curl #{URL} -L -s -o - | tar zxf -")
       pipe("git clone #{GIT_REPO}")
     end
     error 'Uh oh 1' unless $?.success?
@@ -47,10 +48,10 @@ class LanguagePack::Multimarkdown < LanguagePack::Rails3
     end
     error 'Uh oh 2' unless $?.success?
     
-    topic "Make install peg-multimarkdown"
+    topic "copy peg-multimarkdown"
     Dir.chdir("#{build_path}/peg-multimarkdown") do
       # run("curl #{URL} -L -s -o - | tar zxf -")
-      pipe("make install")
+      pipe("cp multimarkdown /usr/local/bin/multimarkdown")
     end
     error 'Uh oh 3' unless $?.success?
   end
